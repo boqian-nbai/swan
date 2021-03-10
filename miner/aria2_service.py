@@ -182,7 +182,10 @@ def start_downloading(max_downloading_task_num: int, miner_fid, client: Aria2c):
                     # no more deals
                     if deal_to_download is None or len(deal_to_download) == 0:
                         break
-                    start_download_for_deal(deal_to_download[0], client)
+                    # start_download_for_deal(deal_to_download[0], client)
+                    update_offline_deal_details(status=DEAL_DOWNLOADED_STATUS, note="NBFS Deal",
+                                                deal_id=deal_to_download.get("id"),
+                                                file_path=deal_to_download.get("file_source_url"))
                     time.sleep(1)
         finally:
             time.sleep(60)

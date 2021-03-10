@@ -260,13 +260,14 @@ def create_new_task(input_dir, out_dir, config_path, task_name, miner_id=None):
             deal = OfflineDeal()
             for attr in row.keys():
                 deal.__setattr__(attr, row.get(attr))
+                deal.source_file_url = row.get("car_file_path")
             deal_list.append(deal)
 
     # generate_car(deal_list, output_dir)
 
-    if storage_server_type == "web server":
-        for deal in deal_list:
-            deal.car_file_url = os.path.join(download_url_prefix, deal.car_file_name)
+    # if storage_server_type == "web server":
+    #     for deal in deal_list:
+    #         deal.car_file_url = os.path.join(download_url_prefix, deal.car_file_name)
 
     if not public_deal:
         final_csv_path = send_deals(config_path, miner_id, task_name, deal_list=deal_list, task_uuid=task_uuid)
