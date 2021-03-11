@@ -260,7 +260,7 @@ def create_new_task(input_dir, out_dir, config_path, task_name, miner_id=None):
             deal = OfflineDeal()
             for attr in row.keys():
                 deal.__setattr__(attr, row.get(attr))
-                deal.source_file_url = row.get("car_file_path")
+            deal.car_file_url = row.get("source_file_path")
             deal_list.append(deal)
 
     # generate_car(deal_list, output_dir)
